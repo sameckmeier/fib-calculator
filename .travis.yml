@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t sameckmeier/fib-calculator/frontend-client-test -f ./frontend-client/Dockerfile.dev
+script:
+  - docker run -e CI=true sameckmeier/fib-calculator/frontend-client-test npm test
+after_success:
+  - docker build -t sameckmeier/fib-calculator/frontend-client ./frontend-client
+  - docker build -t sameckmeier/fib-calculator/api-server ./api-server
+  - docker build -t sameckmeier/fib-calculator/nginx ./nginx
+  - docker build -t sameckmeier/fib-calculator/worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push sameckmeier/fib-calculator/frontend-client
+  - docker push sameckmeier/fib-calculator/api-server
+  - docker push sameckmeier/fib-calculator/nginx
+  - docker push sameckmeier/fib-calculator/worker
