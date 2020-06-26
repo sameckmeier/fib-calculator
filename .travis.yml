@@ -15,3 +15,14 @@ after_success:
   - docker push sameckmeier/fib-calculator-api-server
   - docker push sameckmeier/fib-calculator-nginx
   - docker push sameckmeier/fib-calculator-worker
+deploy:
+  provide: elasticbeanstalk
+  region: us-east-1
+  app: fib-calculator
+  env: FibCalculator-env
+  bucket_name: elasticbeanstalk-us-east-1-059673065443
+  bucket_path: fib-calculator
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "frontend-client",
+      "image": "sameckmeier/fib-calculator-frontend-client",
+      "hostname": "frontend-client",
+      "essential": false
+    },
+    {
+      "name": "api-server",
+      "image": "sameckmeier/fib-calculator-api-server",
+      "hostname": "api-server",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "sameckmeier/fib-calculator-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "sameckmeier/fib-calculator-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["frontend-client", "api-server"]
+    }
+  ]
+}
