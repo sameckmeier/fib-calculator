@@ -5,19 +5,22 @@
       "name": "frontend-client",
       "image": "sameckmeier/fib-calculator-frontend-client",
       "hostname": "frontend-client",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "api-server",
       "image": "sameckmeier/fib-calculator-api-server",
       "hostname": "api-server",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "worker",
       "image": "sameckmeier/fib-calculator-worker",
       "hostname": "worker",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -30,7 +33,8 @@
           "containerPort": 80
         }
       ],
-      "links": ["frontend-client", "api-server"]
+      "links": ["frontend-client", "api-server"],
+      "memory": 128
     }
   ]
 }
