@@ -18,7 +18,7 @@ after_success:
 deploy:
   provide: elasticbeanstalk
   region: us-east-1
-  app: fib-calculator
+  app: FibCalculator
   env: FibCalculator-env
   bucket_name: elasticbeanstalk-us-east-1-059673065443
   bucket_path: fib-calculator
